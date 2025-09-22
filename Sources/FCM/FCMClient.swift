@@ -115,7 +115,7 @@ public struct FCMClient {
 
         let encoder = JSONEncoder()
         let data = try encoder.encode(message)
-        
+
         let url =
             "https://fcm.googleapis.com/v1/projects/\(credentials.projectId)/messages:send"
         var request = HTTPClientRequest(url: url)
@@ -130,7 +130,7 @@ public struct FCMClient {
         )
         return response.status
     }
-    
+
     // no longer exist batch
     //private func send500(
     //    _ batch: [FCMPayload],
@@ -187,5 +187,5 @@ public struct FCMClient {
     //        throw FCMClientError.invalidResponse
     //    }
     //}
-    
+
 }
