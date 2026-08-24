@@ -1,22 +1,14 @@
-build:
-	swift build
+SHELL=/bin/bash
 
-release:
-	swift build -c release
-	
-test:
-	swift test --parallel
-
-test-with-coverage:
-	swift test --parallel --enable-code-coverage
-
-clean:
-	rm -rf .build
-	
-	
 baseUrl = https://raw.githubusercontent.com/BinaryBirds/github-workflows/refs/heads/main/scripts
-	
-check: symlinks language deps lint
+
+check: symlinks language deps lint headers docc-warnings package
+
+breakage:
+	curl -s $(baseUrl)/check-api-breakage.sh | bash
+
+package:
+	curl -s $(baseUrl)/check-swift-package.sh | bash
 
 symlinks:
 	curl -s $(baseUrl)/check-broken-symlinks.sh | bash
@@ -26,9 +18,30 @@ language:
 	
 deps:
 	curl -s $(baseUrl)/check-local-swift-dependencies.sh | bash
-	
+
 lint:
 	curl -s $(baseUrl)/run-swift-format.sh | bash
 
 format:
 	curl -s $(baseUrl)/run-swift-format.sh | bash -s -- --fix
+
+docc-local:
+	curl -s $(baseUrl)/generate-docc.sh | bash -s -- --local
+
+run-docc:
+	curl -s $(baseUrl)/run-docc-docker.sh | bash
+
+docc-warnings:
+	curl -s $(baseUrl)/check-docc-warnings.sh | bash
+
+headers:
+	curl -s $(baseUrl)/check-swift-headers.sh | bash
+
+fix-headers:
+	curl -s $(baseUrl)/check-swift-headers.sh | bash -s -- --fix
+
+test:
+	swift test --parallel
+
+docker-test:
+	docker build -t tests . -f ./docker/tests/Dockerfile && docker run --rm tests

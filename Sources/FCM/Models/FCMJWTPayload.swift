@@ -1,13 +1,13 @@
 //
 //  FCMJWTPayload.swift
-//  FCM
+//  feather-push-fcm
 //
-//  Created by Tibor Bodecs on 2023. 01. 16..
+//  Created by Tibor Bodecs on 2023. 01. 16.
 //
 
 import JWTKit
 
-/// fcm jwt payload
+/// The JWT payload used to authenticate with Firebase Cloud Messaging.
 struct FCMJWTPayload: JWTPayload {
 
     var iss: IssuerClaim
@@ -16,7 +16,7 @@ struct FCMJWTPayload: JWTPayload {
     var iat: IssuedAtClaim
     var exp: ExpirationClaim
 
-    /// verify
+    /// Verifies that the JWT has not expired.
     public func verify(using algorithm: some JWTAlgorithm)
         async throws
     {

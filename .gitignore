@@ -6,3 +6,6 @@ xcuserdata
 DerivedData
 .swiftpm
 *.xctestplan
+
+# Firebase service-account credentials used by the live push test.
+Tests/FeatherPushFCMTests/Resources/FCM_server.json

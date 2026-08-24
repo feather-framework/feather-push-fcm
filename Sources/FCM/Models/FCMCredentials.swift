@@ -1,11 +1,11 @@
 //
-//  PayloadTests.swift
-//  FCMTests
+//  FCMCredentials.swift
+//  feather-push-fcm
 //
-//  Created by Tibor Bodecs on 2023. 01. 16..
+//  Created by Tibor Bodecs on 2023. 01. 16.
 //
 
-/// fcm credentials
+/// Firebase service-account credentials used to authenticate with FCM.
 public struct FCMCredentials: Sendable, Codable {
 
     enum CodingKeys: String, CodingKey {
@@ -33,30 +33,30 @@ public struct FCMCredentials: Sendable, Codable {
         case universeDomain = "universe_domain"
     }
 
-    /// type
+    /// The service-account type, normally `service_account`.
     public let type: String
-    /// project id
+    /// The Google Cloud project identifier.
     public let projectId: String
-    /// private key id
+    /// The service-account private-key identifier.
     public let privateKeyId: String
-    /// private key
+    /// The PEM-encoded service-account private key.
     public let privateKey: String
-    /// client email
+    /// The service-account client email address.
     public let clientEmail: String
-    /// client id
+    /// The service-account client identifier.
     public let clientId: String
-    /// auth uri
+    /// The authorization endpoint from the service-account JSON.
     public let authURI: String
-    /// token uri
+    /// The OAuth token endpoint used to obtain an access token.
     public let tokenURI: String
-    /// auth provider x509 cert url
+    /// The authentication-provider certificate URL.
     public let authProviderX509CertURL: String
-    /// client x509 cert url
+    /// The client certificate URL.
     public let clientX509CertURL: String
-    /// universe domain
+    /// The Google API universe domain.
     public let universeDomain: String
 
-    /// fcm credentials init
+    /// Creates credentials from the fields in a Firebase service-account JSON file.
     public init(
         type: String,
         projectId: String,

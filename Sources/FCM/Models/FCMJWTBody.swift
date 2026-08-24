@@ -1,9 +1,8 @@
 //
 //  FCMJWTBody.swift
-//  FCM
+//  feather-push-fcm
 //
 //  Created by Tibor Bodecs on 19/11/2023.
-//
 
 import Foundation
 
