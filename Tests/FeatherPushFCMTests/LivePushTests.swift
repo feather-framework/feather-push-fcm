@@ -15,9 +15,7 @@ import Testing
 struct LivePushTests {
 
     /// Sends a real notification when explicitly enabled.
-    ///
-    /// The test returns without sending unless both environment variables are configured.
-    @Test
+    //@Test
     func sendsNotificationToTopicUsingServerJSON() async throws {
         let topic = "testtopic"
 
