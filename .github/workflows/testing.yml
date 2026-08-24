@@ -13,7 +13,7 @@ jobs:
 
   swiftlang_checks:
     name: Swiftlang Checks
-    uses: swiftlang/github-workflows/.github/workflows/soundness.yml@0.0.7
+    uses: swiftlang/github-workflows/.github/workflows/soundness.yml@main
     with:
       license_header_check_project_name: "project"
       format_check_enabled : true
@@ -31,27 +31,7 @@ jobs:
     uses: BinaryBirds/github-workflows/.github/workflows/extra_soundness.yml@main
     with:
       local_swift_dependencies_check_enabled : true
+      run_tests_with_cache_enabled : true
       headers_check_enabled : false
       docc_warnings_check_enabled : true
-
-  tests-with-envs:
-    name: Test with ENVs
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        swift:
-          - "6.1"
-          - "6.2"
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Test
-        env:
-          SES_ID: ${{ secrets.SES_ID }}
-          SES_SECRET: ${{ secrets.SES_SECRET }}
-          SES_REGION: ${{ secrets.SES_REGION }}
-          SES_FROM: ${{ secrets.SES_FROM }}
-          SES_TO: ${{ secrets.SES_TO }}
-        run: swift test --parallel --enable-code-coverage
+      run_tests_swift_versions: '["6.1","6.2"]'
