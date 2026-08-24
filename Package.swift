@@ -33,9 +33,9 @@ let package = Package(
         .library(name: "FCM", targets: ["FCM"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.25.2"),
-        .package(url: "https://github.com/vapor/jwt-kit.git", from: "5.1.0"),
-        .package(url: "https://github.com/apple/swift-log.git", from: "1.14.0"),
+        .package(url: "https://github.com/swift-server/async-http-client", from: "1.25.2"),
+        .package(url: "https://github.com/vapor/jwt-kit", from: "5.1.0"),
+        .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
         .package(url: "https://github.com/feather-framework/feather-push", exact: "1.0.0-beta.2"),
         // [docc-plugin-placeholder]
     ],
