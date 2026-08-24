@@ -1,5 +1,5 @@
 //
-//  FCMPushClient.swift
+//  PushClientFCM.swift
 //  feather-push-fcm
 //
 //  Created by Binary Birds on 2026. 08. 24.
@@ -11,7 +11,7 @@ import Foundation
 import NIOCore
 
 /// A `PushClient` implementation backed by Firebase Cloud Messaging.
-public struct FCMPushClient: PushClient, Sendable {
+public struct PushClientFCM: PushClient, Sendable {
 
     private let client: FCMClient
 

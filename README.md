@@ -39,7 +39,7 @@ Add `FeatherPushFCM` to the target dependencies:
 API documentation is available at the following link.
 
 ```swift
-let client = FCMPushClient(
+let client = PushClientFCM(
     httpClient: httpClient,
     credentials: credentials
 )

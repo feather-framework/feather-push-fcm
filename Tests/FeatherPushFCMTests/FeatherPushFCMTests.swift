@@ -41,7 +41,7 @@ struct FeatherPushFCMTests {
         let client = HTTPClient()
         defer { try? client.syncShutdown() }
 
-        _ = try FCMPushClient(
+        _ = try PushClientFCM(
             httpClient: client,
             credentials: data
         )
@@ -66,7 +66,7 @@ struct FeatherPushFCMTests {
     @Test
     func blankTopicsAreRejected() async {
         let client = HTTPClient()
-        let pushClient = FCMPushClient(
+        let pushClient = PushClientFCM(
             httpClient: client,
             credentials: Self.credentials
         )
@@ -80,7 +80,7 @@ struct FeatherPushFCMTests {
             }
             Issue.record("Expected blank topic to be rejected")
         }
-        catch let error where Self.isInvalidTopic(error) {
+        catch let error as PushClientError where Self.isInvalidTopic(error) {
             // Expected.
         }
         catch {
@@ -92,7 +92,7 @@ struct FeatherPushFCMTests {
     @Test
     func notificationMetadataAndDeliveryAreMappedBeforeProviderFailure() async {
         let client = HTTPClient()
-        let pushClient = FCMPushClient(
+        let pushClient = PushClientFCM(
             httpClient: client,
             credentials: Self.credentials
         )
@@ -118,7 +118,7 @@ struct FeatherPushFCMTests {
                 "Expected invalid private key to fail before a network request"
             )
         }
-        catch let error where Self.isUnknown(error) {
+        catch let error as PushClientError where Self.isUnknown(error) {
             // The payload was constructed and the silent delivery branch was exercised.
         }
         catch {

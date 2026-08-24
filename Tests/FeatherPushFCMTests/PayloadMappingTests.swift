@@ -27,7 +27,7 @@ struct PayloadMappingTests {
             sound: .named("ding.wav"),
             collapseID: "collapse"
         )
-        let payload = try FCMPushClient.makePayload(
+        let payload = try PushClientFCM.makePayload(
             notification: notification,
             topic: "topic"
         )
@@ -66,7 +66,7 @@ struct PayloadMappingTests {
 
     @Test
     func silentNotificationKeepsDataInDataPayload() throws {
-        let payload = try FCMPushClient.makePayload(
+        let payload = try PushClientFCM.makePayload(
             notification: .init(
                 title: "title",
                 body: "body",
@@ -89,7 +89,7 @@ struct PayloadMappingTests {
     @Test
     func reservedDataKeysAreRejected() {
         do {
-            _ = try FCMPushClient.makePayload(
+            _ = try PushClientFCM.makePayload(
                 notification: .init(
                     title: "title",
                     body: "body",
@@ -110,7 +110,7 @@ struct PayloadMappingTests {
     @Test
     func emptyTopicIsRejectedBeforePayloadConstruction() {
         do {
-            _ = try FCMPushClient.makePayload(
+            _ = try PushClientFCM.makePayload(
                 notification: .init(title: "title", body: "body"),
                 topic: " \n"
             )
@@ -126,7 +126,7 @@ struct PayloadMappingTests {
 
     @Test
     func deviceTokenIsEncodedAsTheFcmTarget() throws {
-        let payload = try FCMPushClient.makePayload(
+        let payload = try PushClientFCM.makePayload(
             notification: .init(title: "title", body: "body"),
             token: "device-token"
         )
@@ -139,7 +139,7 @@ struct PayloadMappingTests {
     @Test
     func emptyDeviceTokenIsRejectedBeforePayloadConstruction() {
         do {
-            _ = try FCMPushClient.makePayload(
+            _ = try PushClientFCM.makePayload(
                 notification: .init(title: "title", body: "body"),
                 token: " \n"
             )

@@ -34,7 +34,7 @@ struct LivePushTests {
         let httpClient = HTTPClient()
 
         do {
-            let pushClient = try FCMPushClient(
+            let pushClient = try PushClientFCM(
                 httpClient: httpClient,
                 credentials: credentialsData
             )
