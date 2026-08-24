@@ -39,7 +39,9 @@ struct LivePushTests {
                 credentials: credentialsData
             )
             try await withLogger(Logger(label: "LivePushTests")) { _ in
-                Logger.current.info("Sending FCM notification to topic \(topic)")
+                Logger.current.info(
+                    "Sending FCM notification to topic \(topic)"
+                )
                 try await pushClient.send(
                     notification: PushNotification(
                         title: "Feather Push FCM test",

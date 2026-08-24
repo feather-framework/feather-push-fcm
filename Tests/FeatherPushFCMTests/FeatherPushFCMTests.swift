@@ -74,7 +74,10 @@ struct FeatherPushFCMTests {
         do {
             try await withLogger(Logger(label: "FeatherPushFCMTests")) { _ in
                 try await pushClient.send(
-                    notification: PushNotification(title: "title", body: "body"),
+                    notification: PushNotification(
+                        title: "title",
+                        body: "body"
+                    ),
                     to: .topic(" \n\t")
                 )
             }
