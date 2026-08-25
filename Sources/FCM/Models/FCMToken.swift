@@ -1,13 +1,13 @@
 //
 //  FCMToken.swift
-//  FCM
+//  feather-push-fcm
 //
-//  Created by Tibor Bodecs on 2023. 01. 16..
+//  Created by Tibor Bodecs on 2023. 01. 16.
 //
 
 import Foundation
 
-/// fcm token
+/// An OAuth access token returned by the Google authorization endpoint.
 public struct FCMToken: Codable {
 
     enum CodingKeys: String, CodingKey {
@@ -25,16 +25,16 @@ public struct FCMToken: Codable {
         case creationTime = "creation_time"
     }
 
-    /// access token
+    /// The bearer access token used for FCM requests.
     public let accessToken: String
-    /// token type
+    /// The token type, normally `Bearer`.
     public let tokenType: String?
-    /// expire date
+    /// The lifetime of the access token in seconds.
     public let expiresIn: Int?
-    /// refresh token
+    /// An optional refresh token returned by the authorization service.
     public let refreshToken: String?
-    /// scope
+    /// The scopes granted to the access token.
     public let scope: String?
-    /// creation date
+    /// The time at which the token was created.
     public let creationTime: Date?
 }

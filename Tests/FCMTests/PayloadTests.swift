@@ -1,20 +1,21 @@
 //
 //  PayloadTests.swift
-//  FCMTests
+//  feather-push-fcm
 //
-//  Created by Tibor Bodecs on 2023. 01. 16..
-//
+//  Created by Binary Birds on 2023. 11. 19.
 
-import Foundation
 import FCM
-import XCTest
+import Foundation
+import Testing
 
-final class PayloadTests: XCTestCase {
+@Suite
+struct PayloadTests {
 
-    func testBasicEncoding() throws {
+    @Test
+    func basicEncoding() throws {
         let payload = FCMPayload(
             message: .init(
-                token: "token",
+                topic: "topic",
                 type: .data,
                 contents: .init(
                     title: "title",
@@ -27,10 +28,8 @@ final class PayloadTests: XCTestCase {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         let data = try encoder.encode(payload)
-        guard let json = String(data: data, encoding: .utf8) else {
-            return XCTFail()
-        }
-        let exp = """
+        let json = String(decoding: data, as: UTF8.self)
+        let expected = """
             {
               "message" : {
                 "data" : {
@@ -38,17 +37,18 @@ final class PayloadTests: XCTestCase {
                   "foo" : "bar",
                   "title" : "title"
                 },
-                "token" : "token"
+                "topic" : "topic"
               }
             }
             """
-        XCTAssertEqual(json, exp)
+        #expect(json == expected)
     }
 
-    func testEmptyUserInfoEncoding() throws {
+    @Test
+    func emptyUserInfoEncoding() throws {
         let payload = FCMPayload(
             message: .init(
-                token: "token",
+                topic: "topic",
                 type: .notification,
                 contents: .init(
                     title: "title",
@@ -60,21 +60,44 @@ final class PayloadTests: XCTestCase {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         let data = try encoder.encode(payload)
-        guard let json = String(data: data, encoding: .utf8) else {
-            return XCTFail()
-        }
-        let exp = """
+        let json = String(decoding: data, as: UTF8.self)
+        let expected = """
             {
               "message" : {
                 "notification" : {
                   "body" : "body",
                   "title" : "title"
                 },
-                "token" : "token"
+                "topic" : "topic"
               }
             }
             """
-        XCTAssertEqual(json, exp)
+        #expect(json == expected)
     }
 
+    @Test
+    func userInfoCannotOverwriteTitleOrBody() throws {
+        let payload = FCMPayload(
+            message: .init(
+                topic: "topic",
+                type: .notification,
+                contents: .init(
+                    title: "title",
+                    body: "body",
+                    userInfo: ["title": "override"]
+                )
+            )
+        )
+
+        do {
+            _ = try JSONEncoder().encode(payload)
+            Issue.record("Expected duplicate coding key to fail")
+        }
+        catch let error as EncodingError {
+            guard case .invalidValue = error else {
+                Issue.record("Expected invalidValue encoding error")
+                return
+            }
+        }
+    }
 }
