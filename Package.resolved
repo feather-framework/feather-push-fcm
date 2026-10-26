@@ -1,15 +1,6 @@
 {
-  "originHash" : "fb4de676c5e6207a6b7c57cef3f510adc02aa9804cae594188726d7b2b5080f1",
+  "originHash" : "b26228e023ea2b98fffb4d7b8b0de7a6f341b94968650b2af48c4635644e56e3",
   "pins" : [
-    {
-      "identity" : "feather-push",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/feather-framework/feather-push.git",
-      "state" : {
-        "revision" : "10b6c4ed4cf0005c116a565bb3b036402ae916ad",
-        "version" : "1.0.0-beta.2"
-      }
-    },
     {
       "identity" : "async-http-client",
       "kind" : "remoteSourceControl",
@@ -17,6 +8,15 @@
       "state" : {
         "revision" : "9544287b9416c0bc71e58b9f3aead8dd14b16103",
         "version" : "1.36.0"
+      }
+    },
+    {
+      "identity" : "feather-push",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/feather-framework/feather-push.git",
+      "state" : {
+        "revision" : "557f082e205648cb0c66e73e2ce2eccad5f636e7",
+        "version" : "1.0.0-rc.1"
       }
     },
     {

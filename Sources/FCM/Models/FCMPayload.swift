@@ -136,7 +136,7 @@ public struct FCMPayload: Encodable {
             }
 
             /// Encodes the title, body, and custom application data.
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 try container.encode(self.title, forKey: CodingKeys.title)
                 try container.encode(self.body, forKey: CodingKeys.body)
@@ -243,7 +243,7 @@ public struct FCMPayload: Encodable {
         }
 
         /// Encodes the message using FCM content keys.
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.topic, forKey: CodingKeys.topic)
             try container.encodeIfPresent(self.token, forKey: CodingKeys.token)

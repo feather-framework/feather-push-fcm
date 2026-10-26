@@ -5,7 +5,7 @@
 //  Created by Tibor Bodecs on 2023. 01. 16.
 //
 
-import Foundation
+public import Foundation
 
 /// An OAuth access token returned by the Google authorization endpoint.
 public struct FCMToken: Codable {

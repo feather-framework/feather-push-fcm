@@ -4,11 +4,11 @@
 //
 //  Created by Binary Birds on 2026. 08. 24.
 
-import AsyncHTTPClient
-import FCM
-import FeatherPush
-import Foundation
-import NIOCore
+public import AsyncHTTPClient
+public import FCM
+public import FeatherPush
+public import Foundation
+public import NIOCore
 
 /// A `PushClient` implementation backed by Firebase Cloud Messaging.
 public struct PushClientFCM: PushClient, Sendable {
