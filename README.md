@@ -2,7 +2,7 @@
 
 Firebase Cloud Messaging support for Feather Push using topic and device-token delivery.
 
-[![Release: 1.0.0-beta.1](https://img.shields.io/badge/Release-1%2E0%2E0--beta%2E1-F05138)](https://github.com/feather-framework/feather-push-fcm/releases/tag/1.0.0-beta.1)
+[![Release: 1.0.0-rc.1](https://img.shields.io/badge/Release-1%2E0%2E0--rc%2E1-F05138)](https://github.com/feather-framework/feather-push-fcm/releases/tag/1.0.0-rc.1)
 
 ## Features
 
@@ -14,16 +14,16 @@ Firebase Cloud Messaging support for Feather Push using topic and device-token d
 
 ## Requirements
 
-![Swift 6.1+](https://img.shields.io/badge/Swift-6%2E1%2B-F05138)
+![Swift 6.3+](https://img.shields.io/badge/Swift-6%2E3%2B-F05138)
 
-- Swift 6.1+
+- Swift 6.3+
 - macOS 15+, iOS 18+, tvOS 18+, watchOS 11+, or visionOS 2+
 - A Firebase service account with FCM permissions
 
 ## Installation
 
 ```swift
-.package(url: "https://github.com/feather-framework/feather-push-fcm", exact: "1.0.0-beta.1"),
+.package(url: "https://github.com/feather-framework/feather-push-fcm", exact: "1.0.0-rc.1"),
 ```
 
 Add `FeatherPushFCM` to the target dependencies:

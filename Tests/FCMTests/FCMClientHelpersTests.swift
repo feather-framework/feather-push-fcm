@@ -167,7 +167,7 @@ struct FCMClientHelpersTests {
     }
 
     private struct FailingEncodable: Encodable {
-        func encode(to encoder: Encoder) throws {
+        func encode(to encoder: any Encoder) throws {
             throw EncodingError.invalidValue(
                 self,
                 .init(codingPath: [], debugDescription: "Test encoding failure")

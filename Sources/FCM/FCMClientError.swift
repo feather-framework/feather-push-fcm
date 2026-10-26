@@ -21,5 +21,5 @@ public enum FCMClientError: Error {
     /// The provider rejected the request with an HTTP status and message.
     case rejected(status: Int, message: String)
     /// An unexpected underlying error occurred.
-    case unknown(Error)
+    case unknown(any Error)
 }
